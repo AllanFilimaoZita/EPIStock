@@ -1,14 +1,11 @@
-/* Definição das Fontes */
 @font-face {
     font-family: 'Inter';
     src: url(../fonts/Inter-VariableFont_opsz\,wght.ttf) format('truetype');
 }
 
-
-/* Definição das Cores */
 :root {
     --red: #FF0000;
-    --light-red: ##c82333;
+    --light-red: #c82333;
     --caqui: #e9ecef;
     --green: #008000;
     --gray: #495057;
@@ -31,6 +28,7 @@ body {
     background: linear-gradient(135deg, var(--light-blue) 0%, var(--dark-blue) 100%);
     min-height: 100vh;
     padding: 20px;
+    overflow-x: hidden;
 }
 
 .container {
@@ -40,7 +38,6 @@ body {
     background: white;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
 }
 
 .header {
@@ -52,30 +49,27 @@ body {
 }
 
 .header img {
-    width: 25%;
-
+    width: 100px;
+    max-width: 100%;
 }
 
 .content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
     padding: 20px 0;
-    min-height: 600px;
+    flex-wrap: wrap;
 }
 
-.form-section {
-    padding: 40px;
+.form-section, .preview-section {
+    flex: 1 1 100%;
+    padding: 20px;
 }
 
-.preview-section {
-    padding: 40px;
-    background: var(--white);
-    border-left: 1px solid var(--white);
-}
-
-.form-group {
-    margin-bottom: 25px;
+@media (min-width: 768px) {
+    .form-section, .preview-section {
+        flex: 1;
+    }
 }
 
 label {
@@ -99,8 +93,8 @@ input:focus, textarea:focus, select:focus {
     outline: none;
 }
 
-.group-form {
-    margin-bottom: 10px;
+.group-form, .form-group {
+    margin-bottom: 15px;
 }
 
 textarea {
@@ -108,9 +102,9 @@ textarea {
     height: 100px;
 }
 
-.btn {
+.btn, .btn-secondary {
     background: linear-gradient(135deg, var(--dark-blue) 0%, var(--light-blue) 100%);
-    color: var(--white);
+    color: white;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
@@ -118,30 +112,18 @@ textarea {
     font-size: 16px;
     font-weight: 600;
     transition: all 0.3s ease;
-    margin-right: 10px;
-    margin-bottom: 10px;
+    margin: 5px 5px 10px 0;
 }
 
-.btn:hover {
-    transform: translateY(-5px);
+.btn:hover, .btn-secondary:hover {
+    transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-.btn-secondary {
-    background: linear-gradient(135deg, var(--dark-blue) 0%, var(--light-blue) 100%);
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
 }
 
 .cotacaoPreview {
     border: 2px solid var(--caqui);
     border-radius: 10px;
-    padding: 30px;
+    padding: 20px;
     background: var(--white);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -155,9 +137,15 @@ textarea {
 
 .cotacao-info {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    grid-template-columns: 1fr;
+    gap: 15px;
     margin-bottom: 30px;
+}
+
+@media (min-width: 768px) {
+    .cotacao-info {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 .info-item {
@@ -183,10 +171,10 @@ textarea {
 }
 
 .itens-table th,
-    .itens-table td {
-        padding: 12px;
-        text-align: left;
-        border-bottom: 1px solid var(--caqui);
+.itens-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--caqui);
 }
 
 .itens-table th {
@@ -212,6 +200,12 @@ textarea {
     align-items: end;
 }
 
+@media (max-width: 600px) {
+    .item-row {
+        grid-template-columns: 1fr;
+    }
+}
+
 .btn-remove {
     background: var(--red);
     color: var(--white);
@@ -224,93 +218,26 @@ textarea {
 }
 
 .btn-remove:hover {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-
-/* Responsividade para tablets e smartphones */
-@media (max-width: 1024px) {
-    .content {
-        grid-template-columns: 1fr;
-        padding: 20px;
-    }
-
-    .form-section, .preview-section {
-        padding: 10px;
-    }
-
-    .header img {
-        width: 40%;
-    }
+.loading {
+    display: none;
+    text-align: center;
+    margin-top: 20px;
 }
 
-@media (max-width: 768px) {
-    .item-row {
-        grid-template-columns: 1fr 1fr;
-        grid-template-areas:
-            "desc desc"
-            "qtd preco"
-            "btn btn";
-        gap: 10px;
-    }
-
-    .item-row input.item-desc {
-        grid-area: desc;
-    }
-
-    .item-row input.item-qtd {
-        grid-area: qtd;
-    }
-
-    .item-row input.item-preco {
-        grid-area: preco;
-    }
-
-    .item-row button.btn-remove {
-        grid-area: btn;
-        justify-self: end;
-    }
-
-    .btn, .btn-secondary {
-        width: 100%;
-        text-align: center;
-        margin-bottom: 15px;
-    }
-
-    .cotacao-info {
-        grid-template-columns: 1fr;
-    }
-
-    .header img {
-        width: 60%;
-    }
+.loading .spinner {
+    width: 40px;
+    height: 40px;
+    border: 5px solid var(--lightgray);
+    border-top: 5px solid var(--light-blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 10px;
 }
 
-@media (max-width: 480px) {
-    body {
-        padding: 10px;
-    }
-
-    .container {
-        padding: 10px;
-    }
-
-    .header img {
-        width: 80%;
-    }
-
-    input, textarea, select {
-        font-size: 14px;
-        padding: 10px;
-    }
-
-    .btn, .btn-secondary {
-        font-size: 14px;
-        padding: 12px;
-    }
-
-    .form-section, .preview-section {
-        padding: 15px;
-    }
+@keyframes spin {
+    to { transform: rotate(360deg); }
 }
