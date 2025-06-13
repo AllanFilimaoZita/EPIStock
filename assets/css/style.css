@@ -7,7 +7,102 @@
 
 /* Definição das Cores */
 :root {
+    --gray: #495057;
+    --black: #000000;
+    --white: #FFFFFF;
     --light-blue: #3497DA;
     --dark-blue: #2C3F53;
     --dark-green: #677AE4;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, var(--light-blue) 0%, var(--dark-blue) 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.header {
+    background: linear-gradient(135deg, var(--dark-blue) 0%, var(--light-blue) 100%);
+    color: white;
+    padding: 15px;
+    text-align: center;
+    border-radius: 10px 10px 0 0;
+}
+
+.header img {
+    width: 25%;
+
+}
+
+.content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    padding: 20px 0;
+    min-height: 600px;
+}
+
+.form-section {
+    padding: 40px;
+}
+
+.preview-section {
+    padding: 40px;
+    background: var(--white);
+    border-left: 1px solid var(--white);
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: var(--gray);
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e9ecef;
+    border-radius: 5px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: var(--light-blue);
+    outline: none;
+}
+
+.group-form {
+    margin-bottom: 10px;
+}
+
+textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+.btn {
+    background: linear-gradient()
 }

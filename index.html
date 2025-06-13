@@ -20,6 +20,172 @@
 
                 <h2>Dados da Cotação</h2>
 
+                <div class="group-form">
+                    <label for="empresa">Nome da Empresa</label>
+                    <input type="text" id="empresa" placeholder="Ex: Minha Empresa Lda">
+                </div>
+
+                <div class="group-form">
+                    <label for="nome">Nome do Cliente</label>
+                    <input type="text" id="cliente" placeholder="Ex: João da Silva">
+                </div>
+
+                <div class="group-form">
+                    <label for="email">Email do Cliente</label>
+                    <input type="email" id="email" placeholder="Ex: joao@gmail.com">
+                </div>
+
+                <div class="group-form">
+                    <label for="telefone">Telefone do Cliente</label>
+                    <input type="tel" id="telefone" placeholder="Ex: +244 933 333 333">
+                </div>
+
+                <div class="group-form">
+                    <label for="epi">EPI (Equipamento de Proteção Individual)</label>
+                    <select name="epi" id="epi">
+                        <option value="0">Selecione o EPI</option>
+                        <option value="1">Botas de Segurança</option>
+                        <option value="2">Roupa de Trabalho</option>
+                        <option value="3">Óculos de Segurança</option>
+                        <option value="4">Capacete</option>
+                        <option value="6">Capas de Chuva</option>
+                        <option value="5">Cinto de Segurança</option>
+                        <option value="6">Luvas de Segurança</option>
+                        <option value="7">Óculos de Segurança</option>
+                        <option value="8">Cinto de Segurança</option>
+                        <option value="9">Luvas de Segurança</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="tamanho">Tamanho</label>
+                    <select name="tamanho" id="tamanho">
+                        <option value="0">Selecione o Tamanho</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                        <option value="XXXL">XXXL</option>
+                        <option value="XXXXL">XXXXL</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="quantidade">Quantidade <span class="required">*</span></label>
+                    <input type="number" id="quantidade" name="quantidade" min="1" placeholder="0" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="marca">Marca</label>
+                    <input type="text" id="marca" name="marca" placeholder="Ex: Marca Industrial Pro">
+                </div>
+
+                <div class="form-group personalizado-group">
+                    <label>Personalizado</label>
+                    <div class="personalizado-toggle">
+                        <label>
+                            <input type="radio" name="personalizado" value="nao" checked>
+                            Não
+                        </label>
+                        <label>
+                            <input type="radio" name="personalizado" value="sim">
+                            Sim
+                        </label>
+                    </div>
+                    <div class="personalizado-detalhes" id="personalizadoDetalhes">
+                        <textarea id="detalhesPersonalizacao" name="detalhesPersonalizacao" 
+                                placeholder="Descreva os detalhes da personalização..."></textarea>
+                    </div>
+                </div>
+
+                <div class="group-form">
+                    <label for="data">Data da Validade da Cotação</label>
+                    <input type="date" id="data">
+                </div>
+
+                <h3>🛍️ Itens da Cotação</h3>
+                <div id="itens-container">
+                    <div class="item-row">
+                        <input type="text" placeholder="Descrição do item" class="item-desc">
+                        <input type="number" placeholder="Quantidade" class="item-qtd" min="1" value="1">
+                        <input type="number" placeholder="Preço unitário" class="item-preco" min="0" step="0.01">
+                        <button class="btn-remove" onclick="removerItem(this)">🗑️</button>
+                    </div>
+                </div>
+                
+                <button class="btn btn-secondary" onclick="adicionarItem()">+ Adicionar Item</button>
+                
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p>Gerando fatura PDF...</p>
+                </div>
+                
+                <div style="margin-top: 30px;">
+                    <button class="btn" onclick="gerarCotacao()">📄 Gerar Cotação</button>
+                    <button class="btn btn-secondary" id="gerarBtn" onclick="exportarPDF()">📄 Exportar PDF</button>
+                    <button class="btn btn-secondary" onclick="salvarDados()">💾 Salvar Dados</button>
+                    <input type="file" id="carregarArquivo" accept=".json" style="display:none" onchange="carregarDados()">
+                    <button class="btn btn-secondary" onclick="document.getElementById('carregarArquivo').click()">📂 Carregar Dados</button>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-secondary" id="limparBtn">
+                        🔄 Limpar Formulário
+                    </button>
+                </div>
+            </div>
+
+            <div class="preview-section">
+                <h2>Previsualização da Cotação</h2>
+
+                <div class="cotacaoPreview" id="cotacaoPreview">
+                    <div class="cotacaoHeader">
+                        <h2 id="previewEmpresa">Nome da Empresa</h2>
+                        <h3>Cotação</h3>
+                        <p id="previewNumero">Nº: COT-001</p>
+                        <p id="previweData">Data --/--/----</p>
+                    </div>
+
+                    <div class="cotacao-info">
+                        <div class="info-item">
+                            <div class="info-label">Cliente:</div>
+                            <div class="info-value" id="preview-cliente">-</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Email:</div>
+                            <div class="info-value" id="preview-email">-</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Telefone:</div>
+                            <div class="info-value" id="preview-telefone">-</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Validade:</div>
+                            <div class="info-value" id="preview-validade">30 dias</div>
+                        </div>
+                    </div>
+
+                    <table class="itens-table">
+                        <thead>
+                            <tr>
+                                <th>Descrição</th>
+                                <th>Qtd</th>
+                                <th>Preço Unit.</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody id="preview-itens">
+                            <tr>
+                                <td colspan="4" style="text-align:center; color:#666;">Nenhum item adicionado</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="total-section">
+                        <strong>TOTAL GERAL: <span id="preview-total">MT 0,00</span></strong>
+                    </div>
+                </div>
             </div>
 
         </div>
