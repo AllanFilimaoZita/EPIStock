@@ -228,35 +228,89 @@ textarea {
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
+
+/* Responsividade para tablets e smartphones */
+@media (max-width: 1024px) {
+    .content {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+
+    .form-section, .preview-section {
+        padding: 10px;
+    }
+
+    .header img {
+        width: 40%;
+    }
+}
+
 @media (max-width: 768px) {
+    .item-row {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "desc desc"
+            "qtd preco"
+            "btn btn";
+        gap: 10px;
+    }
+
+    .item-row input.item-desc {
+        grid-area: desc;
+    }
+
+    .item-row input.item-qtd {
+        grid-area: qtd;
+    }
+
+    .item-row input.item-preco {
+        grid-area: preco;
+    }
+
+    .item-row button.btn-remove {
+        grid-area: btn;
+        justify-self: end;
+    }
+
+    .btn, .btn-secondary {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .cotacao-info {
+        grid-template-columns: 1fr;
+    }
+
+    .header img {
+        width: 60%;
+    }
+}
+
+@media (max-width: 480px) {
     body {
         padding: 10px;
-        overflow: visible;
     }
-    .content {
-        width: auto;
-        height: auto;
-        grid-template-columns: 1fr;
-        overflow: visible;
+
+    .container {
+        padding: 10px;
     }
-    
-    .preview-section {
-        width: auto;
-        height: auto;
-        border-left: none;
-        border-top: 1px solid #e9ecef;
+
+    .header img {
+        width: 80%;
     }
-    
-    .cotacao-info {
-        width: auto;
-        height: auto;
-        grid-template-columns: 1fr;
+
+    input, textarea, select {
+        font-size: 14px;
+        padding: 10px;
     }
-    
-    .item-row {
-        width: auto;
-        height: auto;
-        grid-template-columns: 1fr;
-        gap: 5px;
+
+    .btn, .btn-secondary {
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .form-section, .preview-section {
+        padding: 15px;
     }
 }
