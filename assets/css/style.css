@@ -1,0 +1,13 @@
+/* Definição das Fontes */
+@font-face {
+    font-family: 'Inter';
+    src: url(../fonts/Inter-VariableFont_opsz\,wght.ttf) format('truetype');
+}
+
+
+/* Definição das Cores */
+:root {
+    --light-blue: #3497DA;
+    --dark-blue: #2C3F53;
+    --dark-green: #677AE4;
+}
